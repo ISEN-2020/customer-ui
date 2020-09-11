@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import MaterialTable from 'material-table'
 import {CastByteToNumber} from '../helpers.js'
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 const columns=[
-    { title: 'Repository', field: 'repo' },
-    { title: '# of tags', field: 'tags' , type: 'numeric'},
-    { title: 'Size', field: 'size', render: rowData => {
-        return CastByteToNumber(rowData.size)
-    }, defaultSort: 'desc' }
+    { title: 'Name', field: 'bookname' },
+    { title: 'Autor', field: 'bookauteur'},
+    { title: 'Available', field: 'bookavailable', render: rowData => {
+        return (rowData.bookavailable) ? <CheckCircleIcon /> : <CancelIcon />
+        } 
+    }
 ]
 
 const options = {
     pageSize: 10
 };
+
+const items = [
+    {bookname: 'toto', bookauteur: 'Maxime K', bookavailable: true},
+    {bookname: 'toto2', bookauteur: 'Budimir U', bookavailable: false}
+]
 
 class RepositoryTable extends Component {
 
@@ -27,6 +35,12 @@ class RepositoryTable extends Component {
     }
 
     componentDidMount() {
+
+        this.setState({
+            isLoaded: true,
+            items: items
+                });
+                /*
         fetch("/api/repositories")
             .then(res => res.json())
             .then((result) => {
@@ -42,7 +56,7 @@ class RepositoryTable extends Component {
                 error
             });
             }
-        )
+        )*/
     }
 
 
@@ -50,7 +64,7 @@ class RepositoryTable extends Component {
   render() {
     return (
         <MaterialTable
-          title={"Repositories"}
+          title={"Book Market"}
           data={this.state.items}
           columns={columns}
           options={options}
