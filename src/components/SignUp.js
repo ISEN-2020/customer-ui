@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
+import { useHistory } from "react-router-dom";
+
 
 function Copyright() {
   return (
@@ -50,6 +52,18 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
+  const history = useHistory();
+
+  const routeChange = () =>{ 
+    let path = `/composant_1`; 
+    history.push(path);
+  }
+
+  const routeChange2 = () =>{ 
+    let path = `/composant_2`; 
+    history.push(path);
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -69,33 +83,6 @@ export default function SignUp() {
         <form className={classes.form} noValidate>
           {/* Creation d'une grille */}
           <Grid container spacing={2}>
-            {/*
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
-            </Grid>
-            */}
-            {/*
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            */}
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -121,59 +108,38 @@ export default function SignUp() {
               />
             </Grid>
 
-            {/*
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={routeChange}
+              >
+                Sign Up
+              </Button>
             </Grid>
-            */}
-          </Grid>
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign Up
-          </Button>
+            <Grid item xs={12}>
+              <Typography component="h1" variant="h5" align="center">
+                Or
+              </Typography>
+            </Grid>
 
-          <Typography component="h1" variant="h5" align="center">
-            Or
-          </Typography>
-
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Register
-          </Button>
-
-          {/*
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
-              </Link>
+            <Grid item xs={12}>
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={routeChange2}
+              >
+                Register
+              </Button>
             </Grid>
           </Grid>
-          */}
-
         </form>
       </div>
-
-      {/*
-      <Box mt={5}>
-        <Copyright />
-      </Box>
-      */}
-
     </Container>
   );
 }
