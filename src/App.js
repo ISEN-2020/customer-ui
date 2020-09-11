@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import RepositoryTable from './components/RepositoryTable'
 import TagsTable from './components/TagsTable'
 import ManifestCard from './components/ManifestCard'
+import SignUp from './components/SignUp'
 
 import 'typeface-roboto';
 
@@ -26,6 +27,8 @@ class App extends Component {
     render() {
         return (
             <div>
+                <SignUp />
+                {/*
                 <NavBar />
                 <Grid container spacing={24} style={{padding: 24, margin: 0, width: '100%'}}>
                     <Grid item xs={4}>
@@ -34,10 +37,13 @@ class App extends Component {
                     <Grid item xs={4}>
                         <TagsTable ref={this.tagTable} onClick={this.clickTag} />
                     </Grid>
+                    
                     <Grid item xs={4}>
                         <ManifestCard innerRef={this.manifestCard} />
                     </Grid>
                 </Grid>
+                */}
+
             </div>
         );
     }
