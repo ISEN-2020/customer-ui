@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Grid from '@material-ui/core/Grid';
+import NavBar from './components/NavBar'
+import RepositoryTable from './components/RepositoryTable'
+import TagsTable from './components/TagsTable'
+import ManifestCard from './components/ManifestCard'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import 'typeface-roboto';
+
+class App extends Component {
+
+    constructor(props) {
+        super(props);
+        this.tagTable = React.createRef();
+        this.manifestCard = React.createRef();
+    }
+
+    clickRepository = (event, rowData) => {
+        this.tagTable.current.setRepo(rowData.repo)
+    }
+
+    clickTag = (event, rowData) => {
+        this.manifestCard.current.setManifest(rowData)
+    }
+
+    render() {
+        return (
+            <div>
+                <NavBar />
+                <Grid container spacing={24} style={{padding: 24, margin: 0, width: '100%'}}>
+                    <Grid item xs={4}>
+                        <RepositoryTable onClick={this.clickRepository} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TagsTable ref={this.tagTable} onClick={this.clickTag} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <ManifestCard innerRef={this.manifestCard} />
+                    </Grid>
+                </Grid>
+            </div>
+        );
+    }
 }
 
 export default App;
