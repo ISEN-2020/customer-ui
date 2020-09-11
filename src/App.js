@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     clickRepository = (event, rowData) => {
-        this.tagTable.current.setRepo(rowData.repo)
+        this.manifestCard.current.setManifest(rowData)
     }
 
     clickTag = (event, rowData) => {
@@ -26,9 +26,21 @@ class App extends Component {
     }
 
     render() {
-        return (
             <Router>
                 <div>
+                <NavBar />
+                <Grid container spacing={24} style={{padding: 24, margin: 0, width: '100%'}}>
+
+                    <Grid item xs={4}>
+                        <RepositoryTable onClick={this.clickRepository} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <ManifestCard innerRef={this.manifestCard} />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <TagsTable ref={this.tagTable} onClick={this.clickTag} />
+                    </Grid>
+                </Grid>
                 <Route exact path="/" component={SignUp} />
                 <Route path="/composant_1" component={ManifestCard} />
                 <Route path="/composant_2" component={RepositoryTable} />
