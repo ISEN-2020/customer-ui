@@ -3,18 +3,14 @@ import MaterialTable from 'material-table'
 import {CastByteToNumber} from '../helpers.js'
 
 const columns=[
-    { title: 'Tag', field: 'tag' },
-    { title: 'Size', field: 'sizes', render: rowData => {
-        var total = 0
-        for(var entry in rowData.sizes) {
-            total += rowData.sizes[entry]
-        }
-        return CastByteToNumber(total)
-    }, defaultSort: 'desc' }
+    { title: 'Name', field: 'bookname' },
+    { title: 'Autor', field: 'bookauteur'},
+    { title: 'Publication Date', field: 'bookpublication'},
+    { title: 'Rendering Date', field: 'bookrendering'}
 ]
 
 const options = {
-    pageSize: 10
+    pageSize: 8
 };
 
 class TagsTable extends Component {
@@ -71,7 +67,7 @@ class TagsTable extends Component {
     render() {
         return (
             <MaterialTable
-              title={"Tags"}
+              title={"Borrowed Books"}
               data={this.state.items}
               columns={columns}
               options={options}

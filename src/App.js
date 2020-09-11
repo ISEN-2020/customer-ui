@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     clickRepository = (event, rowData) => {
-        this.tagTable.current.setRepo(rowData.repo)
+        this.manifestCard.current.setManifest(rowData)
     }
 
     clickTag = (event, rowData) => {
@@ -33,10 +33,10 @@ class App extends Component {
                         <RepositoryTable onClick={this.clickRepository} />
                     </Grid>
                     <Grid item xs={4}>
-                        <TagsTable ref={this.tagTable} onClick={this.clickTag} />
+                        <ManifestCard innerRef={this.manifestCard} />
                     </Grid>
                     <Grid item xs={4}>
-                        <ManifestCard innerRef={this.manifestCard} />
+                        <TagsTable ref={this.tagTable} onClick={this.clickTag} />
                     </Grid>
                 </Grid>
             </div>
