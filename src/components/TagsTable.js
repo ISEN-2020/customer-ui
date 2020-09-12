@@ -12,7 +12,7 @@ import {CastByteToNumber} from '../helpers.js'
 const columns=[
     { title: 'Name', field: 'bookname' },
     { title: 'Autor', field: 'bookauteur'},
-    { title: 'Available', field: 'bookavailable'}
+    { title: 'Rendering date', field: 'bookpublication'}
 ]
 
 const options = {
