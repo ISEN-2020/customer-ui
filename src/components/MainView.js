@@ -27,7 +27,8 @@ class MainView extends Component {
 
     render() {
         return(
-            //<NavBar />
+        <div>
+            <NavBar />
             <Grid container spacing={24} style={{padding: 24, margin: 0, width: '100%'}}>
                 <Grid item xs={4}>
                     <RepositoryTable onClick={this.clickRepository} />
@@ -39,6 +40,7 @@ class MainView extends Component {
                         <TagsTable ref={this.tagTable} onClick={this.clickTag} />
                     </Grid>
                 </Grid>
+        </div>
         );
     }
 }
