@@ -59,6 +59,7 @@ export default function SignUp() {
 
   const routeChange = () =>{ 
     let path = `/composant_1`; 
+    localStorage.setItem("email", email);
     console.log(email);
     console.log(password);
     history.push(path);
