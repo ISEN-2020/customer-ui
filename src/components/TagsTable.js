@@ -2,11 +2,17 @@ import React, { Component } from 'react';
 import MaterialTable from 'material-table'
 import {CastByteToNumber} from '../helpers.js'
 
-const columns=[
+/* const columns=[
     { title: 'Name', field: 'bookname' },
     { title: 'Autor', field: 'bookauteur'},
     { title: 'Publication Date', field: 'bookpublication'},
     { title: 'Rendering Date', field: 'bookrendering'}
+] */
+
+const columns=[
+    { title: 'Name', field: 'bookname' },
+    { title: 'Autor', field: 'bookauteur'},
+    { title: 'Rendering date', field: 'bookpublication'}
 ]
 
 const options = {
@@ -24,6 +30,14 @@ class TagsTable extends Component {
         };
         this.onClick = props.onClick
     }
+
+    lendBook(book) {
+        console.log(book);
+        this.setState({
+            isLoaded: true,
+            items: [book]
+        });
+	}
 
     setRepo(repo) {
 
