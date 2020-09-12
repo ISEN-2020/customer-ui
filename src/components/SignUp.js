@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,7 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useHistory } from "react-router-dom";
-
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -52,18 +52,28 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-  const history = useHistory();
+  const history = useHistory()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const routeChange = () =>{ 
     let path = `/composant_1`; 
+    console.log(email);
+    console.log(password);
     history.push(path);
   }
-
   const routeChange2 = () =>{ 
-    let path = `/composant_2`; 
+    let path = `/composant_2`;
     history.push(path);
-  }
-
+    //send information
+    /*
+    axios.post("https://www.somePlace.com/auth/login", {
+      this.refs.emailID.getValue(),
+      this.refs.passwordID.getValue()
+    })}
+    */
+    }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -92,6 +102,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={event => setEmail(event.target.value)}
               />
             </Grid>
 
@@ -105,6 +116,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={event => setPassword(event.target.value)}
               />
             </Grid>
 
