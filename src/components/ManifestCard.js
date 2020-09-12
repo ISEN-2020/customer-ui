@@ -168,16 +168,11 @@ class ManifestCard extends React.Component {
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         </Collapse>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-          >
-        </Menu>
-        <Button alignItems="center" variant="contained" color="primary" onClick={this.lendBook}>
-            Lend
-        </Button>
+        <Grid container justify ="flex-end">
+            <Button variant="contained" color="primary" onClick={this.lendBook}>
+                Lend
+            </Button>
+        </Grid>
       </Card>
       </div>
     );
