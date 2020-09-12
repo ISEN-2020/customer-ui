@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -44,6 +43,7 @@ class ManifestCard extends React.Component {
 
     constructor(props) {
         super(props);
+        this.props = props;
         this.state = {
             error: null,
             isLoaded: true,
@@ -109,17 +109,19 @@ class ManifestCard extends React.Component {
       }
     )
 
-    var total =0
-    for(var entry in tag.sizes) {
-            total += tag.sizes[entry]
-    }
     this.setState(() => ({
         cardHeader: tag.bookname,
         size: tag.bookauteur,
-        date: tag.bookpublication
+        date: tag.bookpublication,
+        book: tag
     }));
 
    }
+
+  lendBook = () => {
+    console.log(this.state.book);
+    this.props.lendBookTrigger(this.state.book);
+  }
 
   render() {
     const { classes } = this.props;
@@ -133,16 +135,6 @@ class ManifestCard extends React.Component {
             <Avatar aria-label="Recipe" className={classes.avatar}>
               {this.state.cardHeader.substring(0, 1).toUpperCase()}
             </Avatar>
-          }
-          action={
-            <IconButton
-            aria-owns={anchorEl ? 'simple-menu' : undefined}
-            aria-haspopup="true"
-            disabled={this.state.manifest == null}
-            onClick={this.handleClick} >
-
-              <MoreVertIcon />
-            </IconButton>
           }
           title={this.state.cardHeader}
           subheader={this.state.size} >
@@ -168,7 +160,7 @@ class ManifestCard extends React.Component {
           onClose={this.handleClose}
           >
         </Menu>
-        <Button variant="contained" color="primary" onClick={() => { alert('clicked') }}>
+        <Button variant="contained" color="primary" onClick={this.lendBook}>
             Lend
       </Button>
     

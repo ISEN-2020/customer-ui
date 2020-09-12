@@ -25,6 +25,10 @@ class MainView extends Component {
         this.manifestCard.current.setManifest(rowData)
     }
 
+    lendBook = (event) => {
+        this.tagTable.current.lendBook(event)
+    }
+
     render() {
         return(
             //<NavBar />
@@ -33,11 +37,11 @@ class MainView extends Component {
                     <RepositoryTable onClick={this.clickRepository} />
                 </Grid>
                 <Grid item xs={4}>
-                        <ManifestCard innerRef={this.manifestCard} />
-                    </Grid>
-                    <Grid item xs={4}>
-                        <TagsTable ref={this.tagTable} onClick={this.clickTag} />
-                    </Grid>
+                     <ManifestCard lendBookTrigger={this.lendBook} innerRef={this.manifestCard} />
+                </Grid>
+                <Grid item xs={4}>
+                    <TagsTable ref={this.tagTable} onClick={this.clickTag} />
+                </Grid>
                 </Grid>
         );
     }
