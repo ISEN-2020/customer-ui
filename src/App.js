@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import NavBar from './components/NavBar'
-import RepositoryTable from './components/RepositoryTable'
-import TagsTable from './components/TagsTable'
-import ManifestCard from './components/ManifestCard'
-import SignUp from './components/SignUp'
+import NavBar from './components/NavBar';
+import RepositoryTable from './components/RepositoryTable';
+import TagsTable from './components/TagsTable';
+import ManifestCard from './components/ManifestCard';
+import SignUp from './components/SignUp';
+import Register from './components/Register';
+import MainView from './components/MainView.js';
+
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 import 'typeface-roboto';
-import MainView from './components/MainView.js'
+
 class App extends Component {
 
     constructor(props) {
@@ -31,7 +34,7 @@ class App extends Component {
                 <div>
                 <Route exact path="/" component={SignUp} />
                 <Route path="/composant_1" component={MainView} />
-                <Route path="/composant_2" component={RepositoryTable} />
+                <Route path="/composant_2" component={Register} />
                 </div>
             </Router>
         );
