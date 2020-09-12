@@ -146,6 +146,9 @@ class ManifestCard extends React.Component {
           title={this.state.cardHeader}
           subheader={this.state.size} >
         </CardHeader>
+        <Typography variant="body2" component="p">
+            {this.state.date}
+          </Typography>
         <CardContent>
         <Typography paragraph>
         {!this.state.isLoaded && (
