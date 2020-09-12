@@ -140,6 +140,7 @@ class ManifestCard extends React.Component {
             aria-haspopup="true"
             disabled={this.state.manifest == null}
             onClick={this.handleClick} >
+
               <MoreVertIcon />
             </IconButton>
           }
@@ -170,9 +171,13 @@ class ManifestCard extends React.Component {
           onClose={this.handleClose}
           >
         </Menu>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={() => { alert('clicked') }}>
             Lend
       </Button>
+    
+
+
+
       </Card>
       </div>
     );
