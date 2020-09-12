@@ -46,7 +46,6 @@ class App extends Component {
                 <Route path="/composant_2" component={RepositoryTable} />
                 </div>
             </Router>
-        );
     }
 }
 
