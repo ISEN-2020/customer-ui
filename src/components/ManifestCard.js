@@ -18,8 +18,9 @@ import Grid from '@material-ui/core/Grid';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Snackbar from '@material-ui/core/Snackbar';
-
+import Button from '@material-ui/core/Button'
 import ReactJson from 'react-json-view'
+import TextField from '@material-ui/core/TextField';
 
 import {CastByteToNumber} from '../helpers.js'
 
@@ -33,20 +34,11 @@ const styles = theme => ({
   actions: {
     display: 'flex',
   },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatar: {
     backgroundColor: red[500],
   },
 });
+
 
 class ManifestCard extends React.Component {
 
@@ -58,8 +50,9 @@ class ManifestCard extends React.Component {
             tag: null,
             manifest: null,
             expanded: false,
-            cardHeader: "Please select Repository and Tag",
-            size: "---",
+            cardHeader: "bookname",
+            size: "author",
+            date: "dd/mm/yyyy",
             anchorEl: null,
             notificationOpen: false
         };
@@ -89,7 +82,8 @@ class ManifestCard extends React.Component {
 
     this.setState(() => ({
       isLoaded: false,
-      manifest: null
+      manifest: null,
+      cardHeader: tag
     }));
 
     var encodedRepo = encodeURIComponent(tag.repo)
@@ -120,8 +114,9 @@ class ManifestCard extends React.Component {
             total += tag.sizes[entry]
     }
     this.setState(() => ({
-        cardHeader: tag.repo + ":" + tag.tag,
-        size: CastByteToNumber(total)
+        cardHeader: tag.bookname,
+        size: tag.bookauteur,
+        date: tag.bookpublication
     }));
 
    }
@@ -131,6 +126,7 @@ class ManifestCard extends React.Component {
     const { anchorEl } = this.state;
 
     return (
+        <div>   
       <Card className={classes.card}>
         <CardHeader
           avatar={
@@ -161,27 +157,8 @@ class ManifestCard extends React.Component {
         </Typography>
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
-          <IconButton
-            className={classnames(classes.expand, {
-              [classes.expandOpen]: this.state.expanded,
-            })}
-            onClick={this.handleExpandClick}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            <Typography paragraph>Vulnerabilites:</Typography>
-            <Typography paragraph>
-
-            </Typography>
-            <Typography>
-
-            </Typography>
-          </CardContent>
         </Collapse>
         <Menu
           id="simple-menu"
@@ -189,24 +166,12 @@ class ManifestCard extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
           >
-        <MenuItem onClick={this.openNotification}>Trigger Vulnerability Scan</MenuItem>
-        <MenuItem onClick={this.openNotification}>Transfer</MenuItem>
-        <MenuItem onClick={this.openNotification}>Delete</MenuItem>
         </Menu>
-        <Snackbar
-          anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'left',
-          }}
-          open={this.state.notificationOpen}
-          autoHideDuration={2000}
-          onClose={this.closeNotification}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">Not yet implemented.</span>}
-        />
+        <Button variant="contained" color="primary">
+            Lend
+      </Button>
       </Card>
+      </div>
     );
   }
 }

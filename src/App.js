@@ -8,7 +8,7 @@ import SignUp from './components/SignUp'
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 import 'typeface-roboto';
-
+import MainView from './components/MainView.js'
 class App extends Component {
 
     constructor(props) {
@@ -18,7 +18,7 @@ class App extends Component {
     }
 
     clickRepository = (event, rowData) => {
-        this.tagTable.current.setRepo(rowData.repo)
+        this.manifestCard.current.setManifest(rowData)
     }
 
     clickTag = (event, rowData) => {
@@ -26,11 +26,11 @@ class App extends Component {
     }
 
     render() {
-        return (
+        return(
             <Router>
                 <div>
                 <Route exact path="/" component={SignUp} />
-                <Route path="/composant_1" component={ManifestCard} />
+                <Route path="/composant_1" component={MainView} />
                 <Route path="/composant_2" component={RepositoryTable} />
                 </div>
             </Router>
