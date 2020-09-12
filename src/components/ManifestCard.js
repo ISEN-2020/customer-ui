@@ -20,7 +20,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import Button from '@material-ui/core/Button'
 import ReactJson from 'react-json-view'
 import TextField from '@material-ui/core/TextField';
-
+import axios from 'axios';
 import {CastByteToNumber} from '../helpers.js'
 
 const styles = theme => ({
@@ -121,6 +121,18 @@ class ManifestCard extends React.Component {
   lendBook = () => {
     console.log(this.state.book);
     this.props.lendBookTrigger(this.state.book);
+    var book = this.state.book.bookname;
+    var name = this.state.book.bookauteur;
+    var email = localStorage.getItem("email");
+    axios.post("http://isen-library.3r1.co:8001/saveLend", {
+      book,
+      name,
+      email
+    }).then(result => {
+      console.log(result);
+    }).catch(e => {
+      console.log(e);
+    });
   }
 
   render() {

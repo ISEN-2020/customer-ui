@@ -88,7 +88,7 @@ class TagsTable extends Component {
               onRowClick={this.onClick}
               localization={{
                 body: {
-                    emptyDataSourceMessage: 'Please select repository first.',
+                    emptyDataSourceMessage: 'No books ordred.',
                 },
                 }}
             />
