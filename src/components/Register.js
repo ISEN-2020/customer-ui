@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -41,8 +41,13 @@ export default function Register() {
 
   const history = useHistory();
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const routeChange = () =>{ 
     let path = `/`; 
+    console.log(email);
+    console.log(password);
     history.push(path);
   }
 
@@ -67,6 +72,7 @@ export default function Register() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={event => setEmail(event.target.value)}
               />
             </Grid>
 
@@ -80,6 +86,7 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={event => setPassword(event.target.value)}
               />
             </Grid>
 
