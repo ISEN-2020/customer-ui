@@ -28,6 +28,10 @@ class MainView extends Component {
     lendBook = (event) => {
         this.tagTable.current.lendBook(event)
     }
+	
+	returnBook = (event) => {
+        this.tagTable.current.returnBook(event)
+    }
 
     render() {
         return(
@@ -38,7 +42,7 @@ class MainView extends Component {
                     <RepositoryTable onClick={this.clickRepository} />
                 </Grid>
                 <Grid item xs={4}>
-                     <ManifestCard lendBookTrigger={this.lendBook} innerRef={this.manifestCard} />
+                     <ManifestCard lendBookTrigger={this.lendBook} returnBookTrigger={this.returnBook} innerRef={this.manifestCard} />
                 </Grid>
                 <Grid item xs={4}>
                     <TagsTable ref={this.tagTable} onClick={this.clickTag} />
