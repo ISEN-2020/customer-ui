@@ -38,6 +38,14 @@ class TagsTable extends Component {
             items: [book]
         });
 	}
+	
+	returnBook(book) {
+        console.log(book);
+        this.setState({
+            isLoaded: false,
+            items: []
+        });
+	}
 
     setRepo(repo) {
 
