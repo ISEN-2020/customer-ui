@@ -28,6 +28,11 @@ import { lighten, makeStyles } from '@material-ui/core/styles';
 const columns=[
     { title: 'Name', field: 'bookname' },
     { title: 'Autor', field: 'bookauteur'},
+
+    { title: 'Description', field: 'bookdescription', render: rowData => {
+            return (rowData.bookdescription) ? rowData.bookdescription : 'No description available :('
+        }
+    },
     { title: 'Available', field: 'bookavailable', render: rowData => {
         return (rowData.bookavailable) ? <CheckCircleIcon /> : <CancelIcon />
         } 
@@ -35,15 +40,16 @@ const columns=[
 ]
 
 
-const options = {
-    pageSize: 8
-};
+
 
 const items = [
-    {bookname: 'toto', bookauteur: 'Maxime K', bookpublication: '19/06/2020', bookavailable: true},
-    {bookname: 'toto2', bookauteur: 'Budimir U',bookpublication: '19/06/2020', bookavailable: false}
+    {bookname: 'Toto', bookauteur: 'Maxime K',bookdescription:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', bookpublication: '09/09/2022', bookavailable: true},
+    {bookname: 'Toto2', bookauteur: 'Budimir U',bookpublication: '09/09/2022', bookavailable: false}
 ]
 
+const options = {
+    pageSize: items.length
+};
 
 class RepositoryTable extends Component {
 

@@ -51,8 +51,9 @@ class ManifestCard extends React.Component {
             manifest: null,
             expanded: false,
             cardHeader: "bookname",
-            size: "author",
+            author: "author",
             date: "dd/mm/yyyy",
+            bookdescription: "bookdescription",
             anchorEl: null,
             notificationOpen: false
         };
@@ -111,8 +112,9 @@ class ManifestCard extends React.Component {
 
     this.setState(() => ({
         cardHeader: tag.bookname,
-        size: tag.bookauteur,
+        author: tag.bookauteur,
         date: tag.bookpublication,
+        bookdescription: tag.bookdescription,
         book: tag
     }));
 
@@ -148,22 +150,31 @@ class ManifestCard extends React.Component {
               {this.state.cardHeader.substring(0, 1).toUpperCase()}
             </Avatar>
           }
-          title={this.state.cardHeader}
-          subheader={this.state.size} >
+          title={"Book title : " + this.state.cardHeader}
+          subheader={"Author : " + this.state.author} >
         </CardHeader>
-        <Typography variant="body2" component="p">
-            {this.state.date}
-          </Typography>
+
         <CardContent>
-        <Typography paragraph>
-        {!this.state.isLoaded && (
-          <Grid container justify = "center">
-            <CircularProgress />
-          </Grid>
-        )}
-        { this.state.manifest != null ? <ReactJson src={this.state.manifest} /> : null }
-        </Typography>
+
+
+            <Typography variant="body2" component="p" >
+                {"Publication date : " + this.state.date}
+            </Typography>
+
+            <Typography paragraph >
+            {!this.state.isLoaded && (
+              <Grid container justify = "center">
+                <CircularProgress />
+              </Grid>
+            )}
+            { this.state.manifest != null ? <ReactJson src={this.state.manifest} /> : null }
+                {this.state.bookdescription}
+
+            </Typography>
+
+
         </CardContent>
+
         <CardActions className={classes.actions} disableActionSpacing>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
