@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
 import MaterialTable from 'material-table'
 import {CastByteToNumber} from '../helpers.js'
-
-/* const columns=[
-    { title: 'Name', field: 'bookname' },
-    { title: 'Autor', field: 'bookauteur'},
-    { title: 'Publication Date', field: 'bookpublication'},
-    { title: 'Rendering Date', field: 'bookrendering'}
-] */
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 const columns=[
-    { title: 'Name', field: 'bookname' },
-    { title: 'Autor', field: 'bookauteur'},
-    { title: 'Rendering date', field: 'bookpublication'}
+    { title: 'Name', field: 'name' },
+    { title: 'Author', field: 'author'},
+    { title: 'Publish date', field: 'publishDate'}
 ]
 
 const options = {
-    pageSize: 8
+    pageSize: 5
 };
 
 class TagsTable extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -32,10 +26,9 @@ class TagsTable extends Component {
     }
 
     lendBook(book) {
-        console.log(book);
         this.setState({
             isLoaded: true,
-            items: [book]
+            items: this.state.items.concat([book])
         });
 	}
 
