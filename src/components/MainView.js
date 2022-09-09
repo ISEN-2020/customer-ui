@@ -6,7 +6,6 @@ import RepositoryTable from './RepositoryTable'
 import TagsTable from './TagsTable'
 import ManifestCard from './ManifestCard'
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-
 import 'typeface-roboto';
 
 class MainView extends Component {
@@ -44,6 +43,7 @@ class MainView extends Component {
                     <TagsTable ref={this.tagTable} onClick={this.clickTag} />
                 </Grid>
                 </Grid>
+
         </div>
         );
     }
