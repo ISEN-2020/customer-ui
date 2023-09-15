@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+//import FormControlLabel from '@material-ui/core/FormControlLabel';
+//import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+//import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-//import { toast } from 'react-toastify'; // Import react-toastify
 
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
+import '../App.css';
+//import axios from 'axios';
+
 
 function Copyright() {
   return (
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+var error = ""
 export default function SignUp() {
   const classes = useStyles();
 
@@ -57,6 +58,9 @@ export default function SignUp() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isError, setIsError] = useState(false);
+
+
 
   const routeChange = () => { 
     // Check if the email and password match the criteria
@@ -69,9 +73,12 @@ export default function SignUp() {
     } else {
       // Handle incorrect credentials here, e.g., show an error message
       console.log("Incorrect credentials");
-      //toast.error('Incorrect credentials. Please try again.');
+      setIsError(true);
+      error = "your name user or password is incorect !!!!!!!!!!!!!!";
+      
     }
   }
+  
   
   const routeChange2 = () =>{ 
     let path = `/composant_2`;
@@ -159,6 +166,9 @@ export default function SignUp() {
                 Register
               </Button>
             </Grid>
+            <p style={{ textAlign: 'center', color: 'red', fontSize: '18px' }}>
+              {error}
+            </p>
           </Grid>
         </form>
       </div>

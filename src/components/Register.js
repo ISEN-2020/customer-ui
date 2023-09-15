@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 
 import { useHistory } from "react-router-dom";
 
@@ -22,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -38,31 +27,51 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Register() {
   const classes = useStyles();
-
   const history = useHistory();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [checkPassword, setCheckPassword] = useState('');
+  const [passwordsMatch, setPasswordsMatch] = useState(true); // Initialize as true
+  const [fieldsNotEmpty, setFieldsNotEmpty] = useState(false);
 
-  const routeChange = () =>{ 
+  const routeChange = () => { 
     let path = `/`; 
-    console.log(email);
-    console.log(password);
+    console.log("Email:", email);
+    console.log("Password:", password);
     history.push(path);
+  }
 
+  const handlePasswordChange = (event) => {
+    const newPassword = event.target.value;
+    setPassword(newPassword);
+
+    // Check if passwords match
+    setPasswordsMatch(newPassword === checkPassword);
+
+    // Check if both email and password fields are not empty
+    setFieldsNotEmpty(email.trim() !== '' && newPassword.trim() !== '' && checkPassword.trim() !== '');
+  }
+
+  const handleCheckPasswordChange = (event) => {
+    const newCheckPassword = event.target.value;
+    setCheckPassword(newCheckPassword);
+
+    // Check if passwords match
+    setPasswordsMatch(newCheckPassword === password);
+
+    // Check if both email and password fields are not empty
+    setFieldsNotEmpty(email.trim() !== '' && password.trim() !== '' && newCheckPassword.trim() !== '');
   }
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-
         <Typography component="h1" variant="h5">
           Create your account
         </Typography>
-
         <form className={classes.form} noValidate>
-          {/* Creation d'une grille */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -73,10 +82,9 @@ export default function Register() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={event => setEmail(event.target.value)}
+                onChange={(event) => setEmail(event.target.value)}
               />
             </Grid>
-
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -87,10 +95,24 @@ export default function Register() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={event => setPassword(event.target.value)}
+                onChange={handlePasswordChange}
               />
             </Grid>
-
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="checkPassword"
+                label="Check Password"
+                type="password"
+                id="checkPassword"
+                error={!passwordsMatch}
+                helperText={!passwordsMatch && 'Passwords do not match'}
+                autoComplete="current-password"
+                onChange={handleCheckPasswordChange}
+              />
+            </Grid>
             <Grid item xs={12}>
               <Button
                 type="button"
@@ -98,10 +120,22 @@ export default function Register() {
                 variant="contained"
                 color="primary"
                 onClick={routeChange}
+                disabled={!passwordsMatch || !fieldsNotEmpty}
               >
                 Register
               </Button>
-            </Grid>
+              </Grid>
+              <Grid item xs={12}>
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                onClick={routeChange}
+              >
+                back
+              </Button>
+              </Grid>
           </Grid>
         </form>
       </div>
