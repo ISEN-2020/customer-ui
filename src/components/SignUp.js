@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+//import { toast } from 'react-toastify'
 
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
@@ -19,7 +20,7 @@ import axios from 'axios';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      {'Copyright ï¿½ '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
       </Link>{' '}
@@ -57,13 +58,21 @@ export default function SignUp() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const routeChange = () =>{ 
-    let path = `/composant_1`; 
-    localStorage.setItem("email", email);
-    console.log(email);
-    console.log(password);
-    history.push(path);
+  const routeChange = () => { 
+    // Check if the email and password match the criteria
+    if (email === "owner" && password === "powner") {
+      let path = `/composant_1`; 
+      localStorage.setItem("email", email);
+      console.log(email);
+      console.log(password);
+      history.push(path);
+    } else {
+      // Handle incorrect credentials here, e.g., show an error message
+      console.log("Incorrect credentials");
+      //toast.error('Cannot retrieve all registry')
+    }
   }
+  
   const routeChange2 = () =>{ 
     let path = `/composant_2`;
     history.push(path);
@@ -150,6 +159,16 @@ export default function SignUp() {
                 Register
               </Button>
             </Grid>
+            <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                onChange={event => setEmail(event.target.value)}
+              />
           </Grid>
         </form>
       </div>
