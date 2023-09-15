@@ -37,8 +37,8 @@ export default function Register() {
 
   const routeChange = () => { 
     let path = `/`; 
-    console.log("Email:", email);
-    console.log("Password:", password);
+    console.log("Email:", email);   //mettre ici l'envoie du mail
+    console.log("Password:", password); //mettre ici l'envoie du password
     history.push(path);
   }
 
@@ -136,7 +136,7 @@ export default function Register() {
                 back
               </Button>
               </Grid>
-          </Grid>
+            </Grid>
         </form>
       </div>
     </Container>
