@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-//import { toast } from 'react-toastify'
+//import { toast } from 'react-toastify'; // Import react-toastify
 
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
@@ -69,7 +69,7 @@ export default function SignUp() {
     } else {
       // Handle incorrect credentials here, e.g., show an error message
       console.log("Incorrect credentials");
-      //toast.error('Cannot retrieve all registry')
+      //toast.error('Incorrect credentials. Please try again.');
     }
   }
   
@@ -159,16 +159,6 @@ export default function SignUp() {
                 Register
               </Button>
             </Grid>
-            <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={event => setEmail(event.target.value)}
-              />
           </Grid>
         </form>
       </div>
