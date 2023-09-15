@@ -15,21 +15,8 @@ import Container from '@material-ui/core/Container';
 
 import { useHistory } from "react-router-dom";
 import '../App.css';
+import { admin, user } from '../datas/user'; // Adjust the path as needed
 //import axios from 'axios';
-
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright � '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -63,8 +50,11 @@ export default function SignUp() {
 
 
   const routeChange = () => { 
-    // Check if the email and password match the criteria
-    if (email === "owner" && password === "powner") {
+    // Check if the email and password match any user in the data
+    const userData = [...admin, ...user];
+    const matchingUser = userData.find(user => user.name === email && user.pwd === password);
+  
+    if (matchingUser) {
       let path = `/composant_1`; 
       localStorage.setItem("email", email);
       console.log(email);
@@ -74,10 +64,10 @@ export default function SignUp() {
       // Handle incorrect credentials here, e.g., show an error message
       console.log("Incorrect credentials");
       setIsError(true);
-      error = "your name user or password is incorect !!!!!!!!!!!!!!";
-      
+      error = "Your username or password is incorrect.";
     }
   }
+  
   
   
   const routeChange2 = () =>{ 
@@ -166,7 +156,7 @@ export default function SignUp() {
                 Register
               </Button>
             </Grid>
-            <p style={{ textAlign: 'center', color: 'red', fontSize: '18px' }}>
+            <p style={{ textAlign: 'center', color: 'red', fontSize : '16px' }}>
               {error}
             </p>
           </Grid>
