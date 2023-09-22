@@ -3,7 +3,7 @@ name: Build App
 on:
   push:
     branches:
-      - gitActions
+      - dev
 
 jobs:
   build:
@@ -32,12 +32,12 @@ jobs:
         with:
           context: .
           push: true
-          tags: kataaam/customer_ui:latest
+          tags: ronron1024/customer_ui:dev
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: docker.io/kataaam/customer_ui:latest
+          image-ref: docker.io/ronron/customer_ui:dev
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
