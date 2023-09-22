@@ -111,10 +111,10 @@ class ManifestCard extends React.Component {
     )
 
     this.setState(() => ({
-        cardHeader: tag.name,
-        author: tag.author,
-        date: tag.publishDate,
-        bookdescription: tag.description,
+        cardHeader: tag.bookname,
+        author: tag.bookauteur,
+        date: tag.bookpublication,
+        bookdescription: tag.bookdescription,
         book: tag
     }));
 

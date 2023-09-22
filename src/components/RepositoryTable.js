@@ -26,11 +26,11 @@ import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
 
 const columns=[
-    { title: 'Name', field: 'name' },
-    { title: 'Author', field: 'author'},
+    { title: 'Name', field: 'bookname' },
+    { title: 'Autor', field: 'bookauteur'},
 
-    { title: 'Description', field: 'description', render: rowData => {
-            return (rowData.description) ? rowData.description : 'No description available :('
+    { title: 'Description', field: 'bookdescription', render: rowData => {
+            return (rowData.bookdescription) ? rowData.bookdescription : 'No description available :('
         }
     },
     { title: 'Available', field: 'bookavailable', render: rowData => {
@@ -40,8 +40,15 @@ const columns=[
 ]
 
 
+
+
+const items = [
+    {bookname: 'Toto', bookauteur: 'Maxime K',bookdescription:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do ', bookpublication: '09/09/2022', bookavailable: true},
+    {bookname: 'Toto2', bookauteur: 'Budimir U',bookpublication: '09/09/2022', bookavailable: false}
+]
+
 const options = {
-    pageSize: 5
+    pageSize: items.length
 };
 
 class RepositoryTable extends Component {
@@ -51,46 +58,50 @@ class RepositoryTable extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            books: []
+            items: []
         };
         this.onClick = props.onClick
     }
 
     componentDidMount() {
-        // URL is for test purpose
-         fetch("http://localhost:3003/getBooks")
+
+        this.setState({
+            isLoaded: true,
+            items: items
+                });
+                /*
+        fetch("/api/repositories")
             .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        books: result
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+            .then((result) => {
+
+                this.setState({
+                    isLoaded: true,
+                    items: result.data
+                });
+            },
+            (error) => {
+                this.setState({
+                isLoaded: true,
+                error
+            });
+            }
+        )*/
     }
+
+
 
   render() {
     return (
         <div>
             <MaterialTable
               title={"Book Market"}
-              data={this.state.books}
+              data={this.state.items}
               columns={columns}
               options={options}
               onRowClick={this.onClick}
               localization={{
                 body: {
-                    emptyDataSourceMessage: 'Loading book market...',
+                    emptyDataSourceMessage: 'Loading repositories...',
                 },
                 }}
             />
