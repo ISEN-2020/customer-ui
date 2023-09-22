@@ -1,33 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+//import FormControlLabel from '@material-ui/core/FormControlLabel';
+//import Checkbox from '@material-ui/core/Checkbox';
+//import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+//import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import '../App.css';
+import { admin, user } from '../datas/user'; // Adjust the path as needed
+//import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -48,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
+var error = ""
 export default function SignUp() {
   const classes = useStyles();
 
@@ -56,14 +45,31 @@ export default function SignUp() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isError, setIsError] = useState(false);
 
-  const routeChange = () =>{ 
-    let path = `/composant_1`; 
-    localStorage.setItem("email", email);
-    console.log(email);
-    console.log(password);
-    history.push(path);
+
+
+  const routeChange = () => { 
+    // Check if the email and password match any user in the data
+    const userData = [...admin, ...user];
+    const matchingUser = userData.find(user => user.name === email && user.pwd === password);
+  
+    if (matchingUser) {
+      let path = `/composant_1`; 
+      localStorage.setItem("email", email);
+      console.log(email);
+      console.log(password);
+      history.push(path);
+    } else {
+      // Handle incorrect credentials here, e.g., show an error message
+      console.log("Incorrect credentials");
+      setIsError(true);
+      error = "Your username or password is incorrect.";
+    }
   }
+  
+  
+  
   const routeChange2 = () =>{ 
     let path = `/composant_2`;
     history.push(path);
@@ -150,6 +156,9 @@ export default function SignUp() {
                 Register
               </Button>
             </Grid>
+            <p style={{ textAlign: 'center', color: 'red', fontSize : '16px' }}>
+              {error}
+            </p>
           </Grid>
         </form>
       </div>
