@@ -57,14 +57,14 @@ class RepositoryTable extends Component {
     }
 
     componentDidMount() {
-
-         fetch("https://ce8b85ed-51fc-4f57-8847-f299b21ac507.mock.pstmn.io/getBooks")
+        // URL is for test purpose
+         fetch("http://localhost:3003/getBooks")
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        books: result.books
+                        books: result
                     });
                 },
                 // Note: it's important to handle errors here
