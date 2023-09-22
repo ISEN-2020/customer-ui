@@ -30,3 +30,7 @@
     transform: rotate(360deg);
   }
 }
+.centered-red-text {
+  text-align: center;
+  color: red;
+}
