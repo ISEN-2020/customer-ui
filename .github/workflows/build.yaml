@@ -37,7 +37,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: docker.io/ronron/customer_ui:dev
+          image-ref: docker.io/ronron1024/customer_ui:dev
           format: 'table'
           exit-code: '0'
           ignore-unfixed: true
