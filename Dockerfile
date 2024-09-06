@@ -16,15 +16,6 @@ FROM nginx:latest
 # Copy build artifacts from the builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
-# Create a non-root user and group
-RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
-
-# Change ownership of the files to the non-root user
-RUN chown -R appuser:appgroup /usr/share/nginx/html
-
-# Switch to the non-root user
-USER appuser
-
 # Expose the default Nginx port
 EXPOSE 80
 
