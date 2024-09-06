@@ -10,6 +10,6 @@ Dans ce projet, vous recupérer le fichier sur votre pc en faisant :
 
 Ensuite,
 
-### `docker run -p 3000:80 maxenceabrt/customer-ui-service:<tagImage>
+### `docker run -p 3000:80 maxenceabrt/customer-ui-service:<tagImage>`
 
-L'image du conteneur sera ensuite disponible ici : http://localhost:3000/
+L'image du conteneur sera ensuite disponible ici : ### `http://localhost:3000/`
