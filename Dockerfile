@@ -6,7 +6,7 @@ RUN addgroup --system appgroup && adduser --system appuser --ingroup appgroup
 USER appuser
 
 COPY package*.json ./
-RUN npm install
+RUN npm install --ignore-scripts
 COPY . .
 RUN npm run build
 
