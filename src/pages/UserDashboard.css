@@ -1,0 +1,113 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Utiliser la hauteur complète de la fenêtre */
+}
+
+.dashboard-section {
+  flex: 1;
+  padding: 0px 20px 20px 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permet le défilement interne */
+}
+
+.search-books {
+  position: relative; /* Contexte pour le positionnement sticky */
+}
+
+.sticky-header {
+  position: -webkit-sticky; /* Pour le support Safari */
+  position: sticky; /* Pour le support moderne */
+  top: 0;
+  background: #fff; /* Fond blanc pour le contraste */
+  z-index: 1000; /* Assurez-vous que la partie sticky reste au-dessus */
+  padding: 20px;
+  border-bottom: 1px solid #ddd; /* Bordure pour délimiter la section */
+}
+
+.sticky-header h3 {
+    color: #3751FE;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+.sticky-header input,
+.sticky-header button {
+  margin: 10px 0;
+}
+
+.sticky-header input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: calc(100% - 120px);
+}
+
+.sticky-header button {
+  padding: 10px;
+  border: none;
+  background-color: #3751FE;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sticky-header button:hover {
+  background-color: #0044cc;
+}
+
+/* Style pour les autres sections */
+.borrow-books, .borrowed-books {
+  background-color: #f4f4f4; /* Couleur de fond pour les sections */
+}
+
+.borrow-books form {
+  display: flex;
+  flex-direction: column;
+}
+
+.borrow-books input, .borrow-books button {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.borrow-books button {
+  background-color: #3751FE;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.borrow-books button:hover {
+  background-color: #0044cc;
+}
+
+.borrowed-books ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.borrowed-books li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.borrow-books h3 {
+    padding-top: 20px;
+    color: #3751FE;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
+
+.borrowed-books h3 {
+    padding-top: 20px;
+    color: #3751FE;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    margin: 0;
+}
