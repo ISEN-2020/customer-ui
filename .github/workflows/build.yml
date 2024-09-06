@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-deploy:
-    needs: dependency-check
+    needs: sonarcloud
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
