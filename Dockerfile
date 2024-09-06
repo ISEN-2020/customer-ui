@@ -1,19 +1,25 @@
-# ==== CONFIGURE =====
-# Use a Node 16 base image
+# Base image
 FROM node:16-alpine
-# Set the working directory to /app inside the container
+
+# Create non-root user
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Set working directory and change ownership
 WORKDIR /app
-# Copy app files
 COPY . .
-# ==== BUILD =====
-# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN npm ci
-# Build the app
-RUN npm run build
-# ==== RUN =======
-# Set the env to "production"
-ENV NODE_ENV production
-# Expose the port on which the app will be running (3000 is the default that `serve` uses)
+
+# Install dependencies
+RUN npm install
+
+# Change ownership of the app files to non-root user
+RUN chown -R appuser:appgroup /app
+
+# Switch to non-root user
+USER appuser
+
+# Expose port and set the environment
 EXPOSE 3000
-# Start the app
-CMD [ "npx", "serve", "build" ]
+ENV NODE_ENV=production
+
+# Start the application
+CMD ["npm", "start"]
