@@ -6,7 +6,7 @@ Bienvenue dans le projet *Customer UI**. Ce projet est une application front-end
 
 Dans ce projet, vous recupérer le fichier sur votre pc en faisant :
 
-Récupérer le tag image en le cherchant sur DockerHub : https://hub.docker.com/
+Récupérer le dernier tag image en le cherchant sur DockerHub : https://hub.docker.com/
 
 ### `docker pull maxenceabrt/customer-ui-service:<tagImage>`
 
