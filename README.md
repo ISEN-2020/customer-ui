@@ -12,4 +12,4 @@ Ensuite,
 
 ### `docker run -p 3000:80 maxenceabrt/customer-ui-service:<tagImage>`
 
-L'image du conteneur sera ensuite disponible ici : ### `http://localhost:3000/`
+L'image du conteneur sera ensuite disponible ici : `http://localhost:3000/`
