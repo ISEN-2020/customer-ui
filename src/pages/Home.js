@@ -9,27 +9,27 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    /*e.preventDefault();
     
     const loginData = {
-      email: email,
-      password: password,
-      admin_page: "false"
+      "email": email,
+      "password": password,
+      "admin_page": "false"
     };
 
     try {
       const response = await axios.post('/api/login', loginData);
       const { message, role, success } = response.data;
 
-      if (success === "true") {
+      if (success === "true") {*/
         navigate('/dashboard');
-      } else {
+      /*} else {
         alert('Utilisateur inconnu ou mot de passe incorrect.');
       }
     } catch (error) {
       console.error('Login failed', error);
       alert('Une erreur est survenue lors de la tentative de connexion.');
-    }
+    }*/
   };
 
   const handleRegister = () => {

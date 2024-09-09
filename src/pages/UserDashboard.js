@@ -35,18 +35,21 @@ const UserDashboard = () => {
     }
 
     try {
-      const lendingData = { user_email: username, book_id: bookId };
+      const lendingData = {
+        "user_email": username,
+        "book_id": bookId
+      };
       
       const response = await axios.post('http://127.0.0.1:8000/api/create-lending/', lendingData);
-      if (response.status === 200) {
+      if (response.status === 201) {
         alert('Livre prêté avec succès');
       } else {
         alert('Échec du prêt');
       }
     } catch (error) {
-      console.error('Erreur lors du prêt du livre:', error);
-      alert('Erreur lors du prêt du livre');
-    }
+      console.error('Erreur lors du prêt du livre');
+      alert(`Erreur lors du prêt du livre`);
+    }    
   };
 
   return (
@@ -70,7 +73,7 @@ const UserDashboard = () => {
       </div>
 
       <div className="dashboard-section borrow-books">
-        <h3>Prêter un Livre</h3>
+        <h3>Louer un Livre</h3>
         <form onSubmit={handleLendBook}>
           <input
             type="text"
@@ -84,7 +87,7 @@ const UserDashboard = () => {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-          <button type="submit">Prêter</button>
+          <button type="submit">Le Louer</button>
         </form>
       </div>
 
