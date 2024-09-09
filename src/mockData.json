@@ -59,13 +59,13 @@
     {
       "id": "1",
       "title": "The Silent Patient",
-      "borrowedBy": "User A",
+      "borrowedBy": "enzo10villa@gmail.com",
       "returnDate": "2024-09-15"
     },
     {
       "id": "2",
       "title": "Where the Crawdads Sing",
-      "borrowedBy": "User B",
+      "borrowedBy": "maubert2002@gmail.com",
       "returnDate": "2024-09-20"
     }
   ]
