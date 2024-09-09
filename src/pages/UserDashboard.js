@@ -110,7 +110,7 @@ const UserDashboard = () => {
         <ul>
           {userBorrowedBooks.map(book => (
             <li key={book.id}>
-              {book.title} - Emprunté par {book.borrowedBy} - Date de retour : {book.returnDate}
+              Titre: {book.title} - Date de retour : {book.returnDate}
             </li>
           ))}
         </ul>
