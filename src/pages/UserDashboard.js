@@ -12,12 +12,10 @@ const UserDashboard = () => {
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    // Charger les données fictives depuis le fichier JSON importé
     setBooks(mockData.books);
     setBorrowedBooks(mockData.borrowedBooks);
-    setFilteredBooks(mockData.books); // Initialement, tous les livres sont affichés
+    setFilteredBooks(mockData.books);
 
-    // Récupérer le nom d'utilisateur depuis sessionStorage
     const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
       setUsername(storedUsername);
@@ -58,6 +56,9 @@ const UserDashboard = () => {
     }    
   };
 
+  // Filtrer les livres empruntés par l'utilisateur
+  const userBorrowedBooks = borrowedBooks.filter(book => book.borrowedBy === username);
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-section search-books">
@@ -73,7 +74,8 @@ const UserDashboard = () => {
         </div>
         <ul>
           {filteredBooks.map(book => (
-            <li key={book.isbn}>
+            <li key={book.id}>
+              <strong>ISBM:</strong> {book.isbn}<br/>
               <strong>Titre:</strong> {book.title}<br/>
               <strong>Auteur:</strong> {book.author}<br/>
               <strong>Description:</strong> {book.description}<br/>
@@ -89,7 +91,7 @@ const UserDashboard = () => {
         <form onSubmit={handleLendBook}>
           <input
             type="text"
-            placeholder="ID du Livre"
+            placeholder="ISBM du Livre"
             value={bookId}
             onChange={(e) => setBookId(e.target.value)}
           />
@@ -106,7 +108,7 @@ const UserDashboard = () => {
       <div className="dashboard-section borrowed-books">
         <h3>Livres Empruntés</h3>
         <ul>
-          {borrowedBooks.map(book => (
+          {userBorrowedBooks.map(book => (
             <li key={book.id}>
               {book.title} - Emprunté par {book.borrowedBy} - Date de retour : {book.returnDate}
             </li>
