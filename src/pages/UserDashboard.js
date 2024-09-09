@@ -35,7 +35,9 @@ const UserDashboard = () => {
     }
 
     try {
-      const response = await axios.post(`/api/create-lending/?username=${username}&book_id=${bookId}`);
+      const lendingData = { user_email: username, book_id: bookId };
+      
+      const response = await axios.post('http://127.0.0.1:8000/api/create-lending/', lendingData);
       if (response.status === 200) {
         alert('Livre prêté avec succès');
       } else {

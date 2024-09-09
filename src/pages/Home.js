@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import authService from '../services/authService';
+import axios from 'axios';
 import './Home.css';
 
 const Home = () => {
@@ -10,11 +10,25 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const loginData = {
+      email: email,
+      password: password,
+      admin_page: "false"
+    };
+
     try {
-      await authService.login(email, password);
-      navigate('/dashboard');
+      const response = await axios.post('/api/login', loginData);
+      const { message, role, success } = response.data;
+
+      if (success === "true") {
+        navigate('/dashboard');
+      } else {
+        alert('Utilisateur inconnu ou mot de passe incorrect.');
+      }
     } catch (error) {
       console.error('Login failed', error);
+      alert('Une erreur est survenue lors de la tentative de connexion.');
     }
   };
 
@@ -50,7 +64,7 @@ const Home = () => {
       </div>
 
       <div className="image-column">
-        <img src="/Knowledge-rafiki.png"/>
+        <img src="/Knowledge-rafiki.png" alt="Bibliothèque" />
       </div>
     </div>
   );
