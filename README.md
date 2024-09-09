@@ -1,6 +1,6 @@
 # Customer UI
 
-Bienvenue dans le projet *Customer UI**. Ce projet est une application front-end conçue pour gérer l'interface utilisateur de la bibliothèque.
+Bienvenue dans le projet *Customer UI*. Ce projet est une application front-end conçue pour gérer l'interface utilisateur de la bibliothèque.
 
 ## Available Scripts
 
@@ -15,3 +15,8 @@ Ensuite,
 ### `docker run -p 3000:80 maxenceabrt/customer-ui-service:<tagImage>`
 
 L'image du conteneur sera ensuite disponible ici : http://localhost:3000/
+
+## Utilisateur de Connexion
+Pour vous connecter au dashboard il y a deux utilisateurs liés à des livres :
+### user: maubert2002@gmail.com | pwd : "toto"
+### user: enzo10villa@gmail.com | pwd : "toto"
