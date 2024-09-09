@@ -33,4 +33,23 @@ describe('Home Component', () => {
     // Assert that navigate was called with the expected path
     expect(navigate).toHaveBeenCalledWith('/dashboard');
   });
+
+  it('redirects to register page when "S\'inscrire" button is clicked', () => {
+    // Mock the navigate function
+    const navigate = jest.fn();
+    useNavigate.mockImplementation(() => navigate);
+
+    // Render the Home component
+    render(
+      <Router>
+        <Home />
+      </Router>
+    );
+
+    // Click the register button
+    fireEvent.click(screen.getByText(/S'inscrire/i));
+
+    // Assert that navigate was called with the expected path
+    expect(navigate).toHaveBeenCalledWith('/register');
+  });
 });
