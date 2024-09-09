@@ -22,6 +22,7 @@ const Home = () => {
       const { message, role, success } = response.data;
 
       if (success === "true") {*/
+        sessionStorage.setItem('username', email);
         navigate('/dashboard');
       /*} else {
         alert('Utilisateur inconnu ou mot de passe incorrect.');

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import mockData from '../mockData.json';
 import './UserDashboard.css';
-import axios from 'axios'; // Import axios (or you can use fetch instead)
+import axios from 'axios'; 
 
 const UserDashboard = () => {
   const [books, setBooks] = useState([]);
@@ -16,6 +16,12 @@ const UserDashboard = () => {
     setBooks(mockData.books);
     setBorrowedBooks(mockData.borrowedBooks);
     setFilteredBooks(mockData.books); // Initialement, tous les livres sont affichés
+
+    // Récupérer le nom d'utilisateur depuis sessionStorage
+    const storedUsername = sessionStorage.getItem('username');
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
   }, []);
 
   const handleSearch = () => {
@@ -48,7 +54,7 @@ const UserDashboard = () => {
       }
     } catch (error) {
       console.error('Erreur lors du prêt du livre');
-      alert(`Erreur lors du prêt du livre`);
+      alert('Erreur lors du prêt du livre');
     }    
   };
 
@@ -67,7 +73,13 @@ const UserDashboard = () => {
         </div>
         <ul>
           {filteredBooks.map(book => (
-            <li key={book.id}>{book.title} - {book.author}</li>
+            <li key={book.isbn}>
+              <strong>Titre:</strong> {book.title}<br/>
+              <strong>Auteur:</strong> {book.author}<br/>
+              <strong>Description:</strong> {book.description}<br/>
+              <strong>Date de publication:</strong> {book.publicationDate}<br/>
+              <strong>Quantité:</strong> {book.quantity}
+            </li>
           ))}
         </ul>
       </div>
@@ -85,7 +97,7 @@ const UserDashboard = () => {
             type="text"
             placeholder="Nom d'utilisateur"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            readOnly
           />
           <button type="submit">Le Louer</button>
         </form>

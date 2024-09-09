@@ -1,20 +1,72 @@
 {
-    "books": [
-      { "id": "1", "title": "Book One", "author": "Author A" },
-      { "id": "2", "title": "Book Two", "author": "Author B" },
-      { "id": "3", "title": "Book Three", "author": "Author C" },
-      { "id": "4", "title": "Book One", "author": "Author A" },
-      { "id": "5", "title": "Book Two", "author": "Author B" },
-      { "id": "6", "title": "Book Three", "author": "Author C" },
-      { "id": "7", "title": "Book One", "author": "Author A" },
-      { "id": "8", "title": "Book Two", "author": "Author B" },
-      { "id": "9", "title": "Book Three", "author": "Author C" },
-      { "id": "10", "title": "Book One", "author": "Author A" },
-      { "id": "11", "title": "Book Two", "author": "Author B" },
-      { "id": "12", "title": "Book Three", "author": "Author C" }
-    ],
-    "borrowedBooks": [
-      { "id": "1", "title": "Book One", "borrowedBy": "User A", "returnDate": "2024-09-15" },
-      { "id": "2", "title": "Book Two", "borrowedBy": "User B", "returnDate": "2024-09-20" }
-    ]
-  }  
+  "books": [
+    {
+      "id": "1",
+      "title": "The Silent Patient",
+      "description": "A psychological thriller about a woman who shoots her husband and then stops speaking.",
+      "author": "Alex Michaelides",
+      "publicationDate": "2019-02-05",
+      "quantity": 10,
+      "isbn": "978-1250301697"
+    },
+    {
+      "id": "2",
+      "title": "Where the Crawdads Sing",
+      "description": "A novel about a young girl who grows up isolated in the marshes of North Carolina.",
+      "author": "Delia Owens",
+      "publicationDate": "2018-08-14",
+      "quantity": 7,
+      "isbn": "978-0735219090"
+    },
+    {
+      "id": "3",
+      "title": "The Goldfinch",
+      "description": "A coming-of-age novel about a boy who survives an explosion at an art museum.",
+      "author": "Donna Tartt",
+      "publicationDate": "2013-10-22",
+      "quantity": 5,
+      "isbn": "978-0316055437"
+    },
+    {
+      "id": "4",
+      "title": "Educated",
+      "description": "A memoir about a woman who grows up in a strict and abusive household in rural Idaho.",
+      "author": "Tara Westover",
+      "publicationDate": "2018-02-20",
+      "quantity": 8,
+      "isbn": "978-0399590504"
+    },
+    {
+      "id": "5",
+      "title": "The Night Circus",
+      "description": "A fantasy novel about a magical competition between two young illusionists.",
+      "author": "Erin Morgenstern",
+      "publicationDate": "2011-09-13",
+      "quantity": 6,
+      "isbn": "978-0385534642"
+    },
+    {
+      "id": "6",
+      "title": "Little Fires Everywhere",
+      "description": "A drama about two families in a suburban community and the secrets that come to light.",
+      "author": "Celeste Ng",
+      "publicationDate": "2017-09-12",
+      "quantity": 9,
+      "isbn": "978-0735224315"
+    }
+  ],
+  "borrowedBooks": [
+    {
+      "id": "1",
+      "title": "The Silent Patient",
+      "borrowedBy": "User A",
+      "returnDate": "2024-09-15"
+    },
+    {
+      "id": "2",
+      "title": "Where the Crawdads Sing",
+      "borrowedBy": "User B",
+      "returnDate": "2024-09-20"
+    }
+  ]
+}

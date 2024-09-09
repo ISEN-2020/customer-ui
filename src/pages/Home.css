@@ -1,27 +1,25 @@
-
-
 .container {
   display: flex;
-  height: 100vh; /* Utiliser la hauteur de la fenêtre pour occuper tout l'écran */
+  height: 100vh;
 }
 
 .form-column, .image-column {
-  flex: 1; /* Chaque colonne occupe une part égale de l'espace */
+  flex: 1; 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .form-column {
-  background-color: #f4f4f4; /* Couleur de fond pour la colonne de formulaire */
+  background-color: #f4f4f4; 
   padding: 20px;
-  flex-direction: column; /* Aligner les éléments verticalement */
-  display: flex; /* Assurer que le contenu est flex */
+  flex-direction: column; 
+  display: flex; 
 }
 
 .header {
-  text-align: center; /* Centrer le texte */
-  margin-bottom: 20px; /* Espacer le titre du formulaire */
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .header h2 {
@@ -41,7 +39,7 @@
 
 .form {
   display: flex;
-  flex-direction: column; /* Assurer que les éléments du formulaire sont alignés verticalement */
+  flex-direction: column;
   align-items: center;
   width: 100%;
 }

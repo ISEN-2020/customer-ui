@@ -1,27 +1,27 @@
 .dashboard-container {
   display: flex;
-  height: 100vh; /* Utiliser la hauteur complète de la fenêtre */
+  height: 100vh;
 }
 
 .dashboard-section {
   flex: 1;
   padding: 0px 20px 20px 20px;
   box-sizing: border-box;
-  overflow-y: auto; /* Permet le défilement interne */
+  overflow-y: auto;
 }
 
 .search-books {
-  position: relative; /* Contexte pour le positionnement sticky */
+  position: relative;
 }
 
 .sticky-header {
-  position: -webkit-sticky; /* Pour le support Safari */
-  position: sticky; /* Pour le support moderne */
+  position: -webkit-sticky;
+  position: sticky;
   top: 0;
-  background: #fff; /* Fond blanc pour le contraste */
-  z-index: 1000; /* Assurez-vous que la partie sticky reste au-dessus */
+  background: #fff;
+  z-index: 1000;
   padding: 20px;
-  border-bottom: 1px solid #ddd; /* Bordure pour délimiter la section */
+  border-bottom: 1px solid #ddd;
 }
 
 .sticky-header h3 {
@@ -56,9 +56,8 @@
   background-color: #0044cc;
 }
 
-/* Style pour les autres sections */
 .borrow-books, .borrowed-books {
-  background-color: #f4f4f4; /* Couleur de fond pour les sections */
+  background-color: #f4f4f4;
 }
 
 .borrow-books form {
@@ -72,7 +71,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   width: 100%;
-  max-width: 400px;
+  max-width: 375px;
 }
 
 .borrow-books button {
@@ -110,4 +109,9 @@
     font-family: 'Open Sans', sans-serif;
     font-weight: 700;
     margin: 0;
+}
+
+input[readonly] {
+  background-color: #f4f4f4;
+  cursor: not-allowed;
 }
