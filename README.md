@@ -12,7 +12,7 @@ Récupérer l'image Docker depuis Docker Hub :
 
 Lancer le conteneur Docker avec l'image que vous venez de récupérer :
 
-### `docker run -p 3000:80 maxenceabrt/customer-ui-service:latest`
+### `docker run -p 3000:8080 maxenceabrt/customer-ui-service:latest`
 
 Une fois le conteneur en cours d'exécution, vous pouvez accéder à l'UI Utilisateur localement en vous rendant à l'adresse suivante : http://localhost:3000/ ou http://127.0.0.1:3000/
 
