@@ -2,19 +2,19 @@
 
 Bienvenue dans le projet *Customer UI*. Ce projet est une application front-end conçue pour gérer l'interface utilisateur de la bibliothèque.
 
-## Available Scripts
+## Deploiement du microservice
 
-Dans ce projet, vous recupérer le fichier sur votre pc en faisant :
+Afin de déployer le microservice, il faudra :
 
-Récupérer le dernier tag image en le cherchant sur DockerHub : https://hub.docker.com/
+Récupérer le dernier tag image disponible sur : https://hub.docker.com/
 
-### `docker pull maxenceabrt/customer-ui-service:<tagImage>`
+### `docker pull maxenceabrt/customer-ui-service:latest`
 
-Ensuite,
+Ensuite lancer le
 
-### `docker run -p 3000:80 maxenceabrt/customer-ui-service:<tagImage>`
+### `docker run -p 3000:80 maxenceabrt/customer-ui-service:latest`
 
-L'image du conteneur sera ensuite disponible ici : http://localhost:3000/
+L'UI utilisateur sera ensuite disponible en local sur le port 3000 : http://localhost:3000/ ou http://127.0.0.1:3000/
 
 ## Utilisateur de Connexion
 Pour vous connecter au dashboard il y a deux utilisateurs liés à des livres :
