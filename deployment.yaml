@@ -18,17 +18,12 @@ spec:
         image: maxenceabrt/customer-ui-service:latest
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - mountPath: /usr/share/nginx/html
-          name: customer-ui-storage
         resources:
           requests:
             memory: "256Mi"
             cpu: "500m"
+            ephemeral-storage: "1Gi"
           limits:
             memory: "512Mi"
             cpu: "1"
-      volumes:
-      - name: customer-ui-storage
-        persistentVolumeClaim:
-          claimName: customer-ui-pvc
+            ephemeral-storage: "2Gi"
