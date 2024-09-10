@@ -10,11 +10,16 @@ Récupérer l'image Docker depuis Docker Hub :
 
 ### `docker pull maxenceabrt/customer-ui-service:latest`
 
-Lancer le conteneur Docker avec l'image que vous venez de récupérer :
+Cloner le repository en local :
 
-### `docker run -p 3000:8080 maxenceabrt/customer-ui-service:latest`
+### `git clone https://github.com/ISEN-2020/customer-ui.git`
 
-Une fois le conteneur en cours d'exécution, vous pouvez accéder à l'UI Utilisateur localement en vous rendant à l'adresse suivante : http://localhost:3000/ ou http://127.0.0.1:3000/
+Déployer les configurations dans votre cluster Kubernetes :
+
+### `kubectl apply -f deployment.yaml`
+### `kubectl apply -f service.yaml`
+
+Une fois le cluster en cours d'exécution, vous pouvez accéder à l'UI Utilisateur localement en vous rendant à l'adresse suivante : http://localhost:3000/ ou http://127.0.0.1:3000/
 
 ## Utilisateur de Connexion
 Pour vous connecter au dashboard il y a deux utilisateurs liés à des livres :
