@@ -13,11 +13,17 @@ RUN npm run build
 # Stage 2: Create the production image
 FROM nginx:latest
 
+# Create a non-root user and switch to it
+RUN useradd -m nonroot
+
+# Switch to the non-root user
+USER nonroot
+
 # Copy build artifacts from the builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose the default Nginx port
 EXPOSE 80
 
-# Run Nginx in the foreground as a non-root user
+# Run Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
