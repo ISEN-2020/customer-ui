@@ -16,15 +16,8 @@ FROM nginx:latest
 # Copy build artifacts from the builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
-RUN chown -R nginx:nginx /app && chmod -R 755 /app && \
-        chown -R nginx:nginx /var/cache/nginx && \
-        chown -R nginx:nginx /var/log/nginx && \
-        chown -R nginx:nginx /etc/nginx/conf.d
-
-RUN touch /var/run/nginx.pid && \
-        chown -R nginx:nginx /var/run/nginx.pid
-USER nginx
-
+# Expose the default Nginx port
 EXPOSE 80
 
+# Run Nginx in the foreground as a non-root user
 CMD ["nginx", "-g", "daemon off;"]
