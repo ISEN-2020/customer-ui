@@ -13,8 +13,14 @@ RUN npm run build
 # Stage 2: Create the production image
 FROM nginx:latest
 
-# Create a non-root user and switch to it
+# Create a non-root user
 RUN useradd -m nonroot
+
+# Set the appropriate permissions for Nginx directories
+RUN mkdir -p /var/cache/nginx/client_temp \
+    && chown -R nonroot:nonroot /var/cache/nginx \
+    && chown -R nonroot:nonroot /var/log/nginx \
+    && chown -R nonroot:nonroot /var/run/nginx
 
 # Switch to the non-root user
 USER nonroot
