@@ -1,6 +1,11 @@
-# Customer UI
+# Customer UI Service
 
-Bienvenue dans le projet *Customer UI*. Ce projet est une application front-end conçue pour gérer l'interface utilisateur de la bibliothèque.
+Cette application est une interface web pour un système de bibliothèque. Elle permet aux utilisateurs de s'inscrire, de se connecter, de rechercher des livres, de louer un livre, de voir quels livres ils ont empruntés et quand ils doivent le rendre
+
+## Prérequis
+
+Avoir Docker installé sur votre machine
+Avoir activer Kubernetes
 
 ## Déployer le Microservice
 
@@ -8,16 +13,16 @@ Assurez-vous d'avoir Docker installé sur votre machine.
 
 Récupérer l'image Docker depuis Docker Hub :
 
-### `docker pull maxenceabrt/customer-ui-service:latest`
+`docker pull maxenceabrt/customer-ui-service:latest`
 
 Cloner le repository en local :
 
-### `git clone https://github.com/ISEN-2020/customer-ui.git`
+`git clone https://github.com/ISEN-2020/customer-ui.git`
 
 Déployer les configurations dans votre cluster Kubernetes :
 
-### `kubectl apply -f deployment.yaml`
-### `kubectl apply -f service.yaml`
+`kubectl apply -f deployment.yaml`
+`kubectl apply -f service.yaml`
 
 Une fois le cluster en cours d'exécution, vous pouvez accéder à l'UI Utilisateur localement en vous rendant à l'adresse suivante : http://localhost:3000/ ou http://127.0.0.1:3000/
 
