@@ -29,4 +29,19 @@ describe('UserDashboard', () => {
     
     expect(screen.queryByText('Titre: Livre Test')).toBeNull();
   });
+
+  test('soumet le formulaire de prêt de livre et déclenche une alerte si les champs sont vides', async () => {
+    const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+
+    render(<UserDashboard />);
+
+    fireEvent.change(screen.getByPlaceholderText(/ISBM du Livre/i), {
+      target: { value: '' },
+    });
+
+    fireEvent.click(screen.getByText(/Le Louer/i));
+
+    expect(alertMock).toHaveBeenCalledWith('Veuillez remplir tous les champs');
+    alertMock.mockRestore();
+  });
 });
