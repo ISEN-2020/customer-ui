@@ -12,8 +12,16 @@ spec:
       labels:
         app: customer-ui-service
     spec:
+      automountServiceAccountToken: false
       containers:
       - name: customer-ui
         image: maxenceabrt/customer-ui-service:latest
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "500m"
+          limits:
+            memory: "512Mi"
+            cpu: "1"
