@@ -13,24 +13,11 @@ RUN npm run build
 # Stage 2: Create the production image
 FROM nginx:latest
 
-# Create a non-root user
-RUN useradd -m nonroot
-
-# Set the appropriate permissions for Nginx directories
-RUN mkdir -p /var/cache/nginx /var/cache/nginx/client_temp \
-    /var/log/nginx /var/run/nginx \
-    && chown -R nonroot:nonroot /var/cache/nginx \
-    && chown -R nonroot:nonroot /var/log/nginx \
-    && chown -R nonroot:nonroot /var/run/nginx
-
-# Switch to the non-root user
-USER nonroot
-
 # Copy build artifacts from the builder stage
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose the default Nginx port
 EXPOSE 80
 
-# Run Nginx in the foreground
+# Run Nginx in the foreground as a non-root user
 CMD ["nginx", "-g", "daemon off;"]
