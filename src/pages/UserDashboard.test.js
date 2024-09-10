@@ -1,11 +1,14 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import UserDashboard from './UserDashboard';
 import mockData from '../mockData.json';
+import axios from 'axios';
 
 beforeEach(() => {
   sessionStorage.setItem('username', 'testuser');
 });
+
+jest.mock('axios');
 
 describe('UserDashboard', () => {
   test('affiche les livres et permet la recherche', () => {
@@ -42,6 +45,33 @@ describe('UserDashboard', () => {
     fireEvent.click(screen.getByText(/Le Louer/i));
 
     expect(alertMock).toHaveBeenCalledWith('Veuillez remplir tous les champs');
+    alertMock.mockRestore();
+  });
+
+  test('soumet le formulaire et affiche un succès si l\'appel API réussit', async () => {
+    const alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+
+    axios.post.mockResolvedValueOnce({
+      status: 201
+    });
+
+    render(<UserDashboard />);
+
+    fireEvent.change(screen.getByPlaceholderText(/ISBM du Livre/i), {
+      target: { value: '1234' },
+    });
+
+    fireEvent.click(screen.getByText(/Le Louer/i));
+
+    await waitFor(() => {
+      expect(axios.post).toHaveBeenCalledWith(
+        'http://127.0.0.1:8000/api/create-lending/',
+        { user_email: 'testuser', book_id: '1234' }
+      );
+
+      expect(alertMock).toHaveBeenCalledWith('Livre prêté avec succès');
+    });
+
     alertMock.mockRestore();
   });
 });
