@@ -17,7 +17,8 @@ FROM nginx:latest
 RUN useradd -m nonroot
 
 # Set the appropriate permissions for Nginx directories
-RUN mkdir -p /var/cache/nginx/client_temp \
+RUN mkdir -p /var/cache/nginx /var/cache/nginx/client_temp \
+    /var/log/nginx /var/run/nginx \
     && chown -R nonroot:nonroot /var/cache/nginx \
     && chown -R nonroot:nonroot /var/log/nginx \
     && chown -R nonroot:nonroot /var/run/nginx
