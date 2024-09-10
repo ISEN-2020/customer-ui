@@ -29,3 +29,10 @@ Une fois le cluster en cours d'exécution, vous pouvez accéder à l'UI Utilisat
 Pour vous connecter au dashboard il y a deux utilisateurs liés à des livres :
 - user: maubert2002@gmail.com | pwd : "toto"
 - user: enzo10villa@gmail.com | pwd : "toto"
+
+## Lire les logs
+
+Lister vos pods en cours : `kubectl get pods`
+
+Vous pouvez lire les journaux des pods en utilisant la commande : `kubectl logs <pod-name>`
+
