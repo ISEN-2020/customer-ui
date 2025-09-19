@@ -11,7 +11,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) {
-      alert('Veuillez saisir un email');
+      console.log('Veuillez saisir un email');
       return;
     }
     // Auth mockée: on stocke l'email et on navigue
