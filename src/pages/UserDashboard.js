@@ -9,6 +9,7 @@ const UserDashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookId, setBookId] = useState('');
+  const [bookStatus, setBookStatus] = useState('');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -41,7 +42,8 @@ const UserDashboard = () => {
     try {
       const lendingData = {
         "user_email": username,
-        "book_id": bookId
+        "book_id": bookId,
+        "status":bookStatus
       };
       
       const response = await axios.post('http://127.0.0.1:8000/api/create-lending/', lendingData);
@@ -80,7 +82,8 @@ const UserDashboard = () => {
               <strong>Auteur:</strong> {book.author}<br/>
               <strong>Description:</strong> {book.description}<br/>
               <strong>Date de publication:</strong> {book.publicationDate}<br/>
-              <strong>Quantité:</strong> {book.quantity}
+              <strong>Quantité:</strong> {book.quantity}<br/>
+              <strong>Status:</strong> {book.status}
             </li>
           ))}
         </ul>
@@ -100,6 +103,12 @@ const UserDashboard = () => {
             placeholder="Nom d'utilisateur"
             value={username}
             readOnly
+          />
+          <input
+            type="text"
+            placeholder="Status du Livre"
+            value={bookStatus}
+            onChange={(e) => setBookStatus(e.target.value)}
           />
           <button type="submit">Le Louer</button>
         </form>
