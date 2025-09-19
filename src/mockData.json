@@ -7,12 +7,8 @@
       "author": "Alex Michaelides",
       "publicationDate": "2019-02-05",
       "quantity": 10,
-<<<<<<< HEAD
       "isbn": "9781250301697"
-=======
-      "isbn": "978-1250301697",
-      "status": "Borrowed"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
+
     },
     {
       "id": "2",
@@ -21,12 +17,7 @@
       "author": "Delia Owens",
       "publicationDate": "2018-08-14",
       "quantity": 7,
-<<<<<<< HEAD
       "isbn": "9780735219090"
-=======
-      "isbn": "978-0735219090",
-      "status": "Borrowed"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
     },
     {
       "id": "3",
@@ -35,12 +26,8 @@
       "author": "Donna Tartt",
       "publicationDate": "2013-10-22",
       "quantity": 5,
-<<<<<<< HEAD
       "isbn": "9780316055437"
-=======
-      "isbn": "978-0316055437",
-      "status": "Available"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
+
     },
     {
       "id": "4",
@@ -49,12 +36,7 @@
       "author": "Tara Westover",
       "publicationDate": "2018-02-20",
       "quantity": 8,
-<<<<<<< HEAD
       "isbn": "9780399590504"
-=======
-      "isbn": "978-0399590504",
-      "status": "Available"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
     },
     {
       "id": "5",
@@ -63,12 +45,7 @@
       "author": "Erin Morgenstern",
       "publicationDate": "2011-09-13",
       "quantity": 6,
-<<<<<<< HEAD
       "isbn": "9780385534642"
-=======
-      "isbn": "978-0385534642",
-      "status": "Available"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
     },
     {
       "id": "6",
@@ -77,12 +54,7 @@
       "author": "Celeste Ng",
       "publicationDate": "2017-09-12",
       "quantity": 9,
-<<<<<<< HEAD
       "isbn": "9780735224315"
-=======
-      "isbn": "978-0735224315",
-      "status": "Available"
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
     }
   ],
   "borrowedBooks": [

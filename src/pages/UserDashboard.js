@@ -62,14 +62,9 @@ const UserDashboard = () => {
       }
 
       const lendingData = {
-<<<<<<< HEAD
         user_email: username,
         book_id: parsedBookId,
-=======
-        "user_email": username,
-        "book_id": bookId,
-        "status":bookStatus
->>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
+
       };
 
       // Utiliser un chemin relatif pour fonctionner derrière un Ingress K8s
