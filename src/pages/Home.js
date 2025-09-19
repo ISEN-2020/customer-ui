@@ -9,28 +9,14 @@ const Home = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    /*e.preventDefault();
-    
-    const loginData = {
-      "email": email,
-      "password": password,
-      "admin_page": "false"
-    };
-
-    try {
-      const response = await axios.post('/api/login', loginData);
-      const { message, role, success } = response.data;
-
-      if (success === "true") {*/
-        sessionStorage.setItem('username', email);
-        navigate('/dashboard');
-      /*} else {
-        alert('Utilisateur inconnu ou mot de passe incorrect.');
-      }
-    } catch (error) {
-      console.error('Login failed', error);
-      alert('Une erreur est survenue lors de la tentative de connexion.');
-    }*/
+    e.preventDefault();
+    if (!email) {
+      alert('Veuillez saisir un email');
+      return;
+    }
+    // Auth mockée: on stocke l'email et on navigue
+    sessionStorage.setItem('username', email);
+    navigate('/dashboard');
   };
 
   const handleRegister = () => {

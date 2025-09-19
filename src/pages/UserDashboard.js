@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const UserDashboard = () => {
   const [books, setBooks] = useState([]);
-  const [borrowedBooks, setBorrowedBooks] = useState([]);
+  const [borrowedBooks, setBorrowedBooks] = useState([]); // Will be populated from backend
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookId, setBookId] = useState('');
@@ -13,7 +13,6 @@ const UserDashboard = () => {
 
   useEffect(() => {
     setBooks(mockData.books);
-    setBorrowedBooks(mockData.borrowedBooks);
     setFilteredBooks(mockData.books);
 
     const storedUsername = sessionStorage.getItem('username');
@@ -21,6 +20,22 @@ const UserDashboard = () => {
       setUsername(storedUsername);
     }
   }, []);
+
+  // Fetch user borrowings from backend when username is available
+  useEffect(() => {
+    const fetchBorrowings = async () => {
+      if (!username) return;
+      try {
+        const res = await axios.get(`/api/lendings/by_user/`, {
+          params: { user_email: username }
+        });
+        setBorrowedBooks(res.data || []);
+      } catch (err) {
+        console.error('Erreur lors du chargement des emprunts:', err?.response?.data || err.message);
+      }
+    };
+    fetchBorrowings();
+  }, [username]);
 
   const handleSearch = () => {
     const query = searchQuery.toLowerCase();
@@ -39,25 +54,43 @@ const UserDashboard = () => {
     }
 
     try {
+      const parsedBookId = parseInt(bookId, 10);
+      if (Number.isNaN(parsedBookId)) {
+        alert('ISBM/ID du livre invalide. Entrez un nombre.');
+        return;
+      }
+
       const lendingData = {
-        "user_email": username,
-        "book_id": bookId
+        user_email: username,
+        book_id: parsedBookId,
       };
-      
-      const response = await axios.post('http://127.0.0.1:8000/api/create-lending/', lendingData);
+
+      // Utiliser un chemin relatif pour fonctionner derrière un Ingress K8s
+      // L'Ingress redirigera /api vers le service backend
+      const response = await axios.post('/api/create-lending/', lendingData);
       if (response.status === 201) {
+        // Refresh borrowings after successful lending
+        try {
+          const res = await axios.get(`/api/lendings/by_user/`, { params: { user_email: username } });
+          setBorrowedBooks(res.data || []);
+        } catch (err) {
+          console.error('Impossible de rafraîchir les emprunts:', err?.response?.data || err.message);
+        }
         alert('Livre prêté avec succès');
       } else {
         alert('Échec du prêt');
       }
     } catch (error) {
-      console.error('Erreur lors du prêt du livre');
-      alert('Erreur lors du prêt du livre');
+      const backendMsg = error?.response?.data ? JSON.stringify(error.response.data) : error?.message;
+      console.error('Erreur lors du prêt du livre:', backendMsg);
+      alert('Erreur lors du prêt du livre: ' + (backendMsg || 'voir console'));
     }    
   };
 
-  // Filtrer les livres empruntés par l'utilisateur
-  const userBorrowedBooks = borrowedBooks.filter(book => book.borrowedBy === username);
+  // Helper to get book details from mockData by id
+  const getBookById = (id) => {
+    return mockData.books.find(b => b.id === String(id));
+  };
 
   return (
     <div className="dashboard-container">
@@ -91,7 +124,7 @@ const UserDashboard = () => {
         <form onSubmit={handleLendBook}>
           <input
             type="text"
-            placeholder="ISBM du Livre"
+            placeholder="ID du Livre (nombre)"
             value={bookId}
             onChange={(e) => setBookId(e.target.value)}
           />
@@ -108,11 +141,19 @@ const UserDashboard = () => {
       <div className="dashboard-section borrowed-books">
         <h3>Livres Empruntés</h3>
         <ul>
-          {userBorrowedBooks.map(book => (
-            <li key={book.id}>
-              Titre: {book.title} - Date de retour : {book.returnDate}
-            </li>
-          ))}
+          {borrowedBooks.length === 0 && (
+            <li>Aucun emprunt pour l'instant.</li>
+          )}
+          {borrowedBooks.map(lending => {
+            const book = getBookById(lending.book_id);
+            return (
+              <li key={lending.id}>
+                Titre: {book?.title || `Livre #${lending.book_id}`} -
+                Date d'emprunt: {new Date(lending.date_borrowed).toLocaleDateString()} -
+                Date de retour prévue: {new Date(lending.date_due).toLocaleDateString()}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
