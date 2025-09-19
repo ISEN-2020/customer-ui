@@ -9,6 +9,7 @@ const UserDashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookId, setBookId] = useState('');
+  const [bookStatus, setBookStatus] = useState('');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -61,8 +62,14 @@ const UserDashboard = () => {
       }
 
       const lendingData = {
+<<<<<<< HEAD
         user_email: username,
         book_id: parsedBookId,
+=======
+        "user_email": username,
+        "book_id": bookId,
+        "status":bookStatus
+>>>>>>> dea8687fdecd06871ddd84ad69455c059b991457
       };
 
       // Utiliser un chemin relatif pour fonctionner derrière un Ingress K8s
@@ -113,7 +120,8 @@ const UserDashboard = () => {
               <strong>Auteur:</strong> {book.author}<br/>
               <strong>Description:</strong> {book.description}<br/>
               <strong>Date de publication:</strong> {book.publicationDate}<br/>
-              <strong>Quantité:</strong> {book.quantity}
+              <strong>Quantité:</strong> {book.quantity}<br/>
+              <strong>Status:</strong> {book.status}
             </li>
           ))}
         </ul>
@@ -133,6 +141,12 @@ const UserDashboard = () => {
             placeholder="Nom d'utilisateur"
             value={username}
             readOnly
+          />
+          <input
+            type="text"
+            placeholder="Status du Livre"
+            value={bookStatus}
+            onChange={(e) => setBookStatus(e.target.value)}
           />
           <button type="submit">Le Louer</button>
         </form>
