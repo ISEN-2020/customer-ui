@@ -15,6 +15,7 @@ const UserDashboard = () => {
   useEffect(() => {
     setBooks(mockData.books);
     setFilteredBooks(mockData.books);
+    setBorrowedBooks(mockData.borrowedBooks);
 
     const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
@@ -64,7 +65,7 @@ const UserDashboard = () => {
       const lendingData = {
         user_email: username,
         book_id: parsedBookId,
-
+        status:"ACTIVE"
       };
 
       // Utiliser un chemin relatif pour fonctionner derrière un Ingress K8s
@@ -94,6 +95,11 @@ const UserDashboard = () => {
     return mockData.books.find(b => b.id === String(id));
   };
 
+  function getBorrowedStatus(Book) {
+    const isBorrowed = borrowedBooks.some(b => b.id === Book.id);
+    return isBorrowed ? "Borrowed" : "Available";
+  }
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-section search-books">
@@ -116,7 +122,7 @@ const UserDashboard = () => {
               <strong>Description:</strong> {book.description}<br/>
               <strong>Date de publication:</strong> {book.publicationDate}<br/>
               <strong>Quantité:</strong> {book.quantity}<br/>
-              <strong>Status:</strong> {book.status}
+              <strong>Status:</strong> {getBorrowedStatus(book)}
             </li>
           ))}
         </ul>
@@ -137,12 +143,6 @@ const UserDashboard = () => {
             value={username}
             readOnly
           />
-          <input
-            type="text"
-            placeholder="Status du Livre"
-            value={bookStatus}
-            onChange={(e) => setBookStatus(e.target.value)}
-          />
           <button type="submit">Le Louer</button>
         </form>
       </div>
@@ -154,12 +154,12 @@ const UserDashboard = () => {
             <li>Aucun emprunt pour l'instant.</li>
           )}
           {borrowedBooks.map(lending => {
-            const book = getBookById(lending.book_id);
+            const book = getBookById(lending.id);
             return (
               <li key={lending.id}>
-                Titre: {book?.title || `Livre #${lending.book_id}`} -
+                Titre: {book?.title || `Livre #${lending.id}`} -
                 Date d'emprunt: {new Date(lending.date_borrowed).toLocaleDateString()} -
-                Date de retour prévue: {new Date(lending.date_due).toLocaleDateString()}
+                Date de retour prévue: {new Date(lending.returnDate).toLocaleDateString()}
               </li>
             );
           })}
