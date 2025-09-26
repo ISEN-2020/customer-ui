@@ -15,7 +15,7 @@ spec:
       automountServiceAccountToken: false
       containers:
       - name: customer-ui
-        image: customer-ui:1.7
+        image: customer-ui:3.5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080

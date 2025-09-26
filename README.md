@@ -11,7 +11,9 @@ Cette application est une interface web pour un système de bibliothèque. Elle 
 
 Récupérer l'image Docker depuis Docker Hub :
 
-`docker pull maxenceabrt/customer-ui-service:latest`
+Version avant modification année 2025 : `docker pull maxenceabrt/customer-ui-service:latest`
+
+Version après modification année 2025 : `docker pull flb2725/customer-ui-service:latest`
 
 Cloner le repository en local :
 
@@ -35,4 +37,13 @@ Pour vous connecter au dashboard il y a deux utilisateurs liés à des livres :
 Lister vos pods en cours : `kubectl get pods`
 
 Vous pouvez lire les journaux des pods en utilisant la commande : `kubectl logs <pod-name>`
+
+
+## L'API est géré par flask
+Vous pouvez ajouter des livres uniquement via terminal avec la requête post_books et en insérant un json représentant les datas de votre livre.
+Via l'interface vous pouvez recherchez un livre parmi votre liste et le réserver et voir qui l'a réservé.
+Lorsque vous réservez il vous faut refresh la page `http://localhost:3000/` pour pouvoir voir l'état changer dans la liste affichée.
+
+Il vous faut installer les requirements pour le book-service (API) : `python -r requirements.txt`
+Puis démarrer celui-ci : `python main.py runserver` et vous rendre sur `http://localhost:5000`
 

@@ -1,60 +1,62 @@
 {
   "books": [
     {
-      "id": "1",
       "title": "The Silent Patient",
-      "description": "A psychological thriller about a woman who shoots her husband and then stops speaking.",
       "author": "Alex Michaelides",
-      "publicationDate": "2019-02-05",
+      "description": "A psychological thriller about a woman who shoots her husband and then stops speaking.",
+      "Year": "2019-02-05",
       "quantity": 10,
-      "isbn": "0"
+      "status": "AVAILABLE"
 
     },
     {
-      "id": "2",
       "title": "Where the Crawdads Sing",
       "description": "A novel about a young girl who grows up isolated in the marshes of North Carolina.",
       "author": "Delia Owens",
-      "publicationDate": "2018-08-14",
+      "Year": "2018-08-14",
       "quantity": 7,
-      "isbn": "9780735219090"
+      "status": "AVAILABLE"
     },
     {
-      "id": "3",
       "title": "The Goldfinch",
       "description": "A coming-of-age novel about a boy who survives an explosion at an art museum.",
       "author": "Donna Tartt",
-      "publicationDate": "2013-10-22",
+      "Year": "2013-10-22",
       "quantity": 5,
-      "isbn": "9780316055437"
+      "status": "AVAILABLE"
 
     },
     {
-      "id": "4",
       "title": "Educated",
       "description": "A memoir about a woman who grows up in a strict and abusive household in rural Idaho.",
       "author": "Tara Westover",
-      "publicationDate": "2018-02-20",
+      "Year": "2018-02-20",
       "quantity": 8,
-      "isbn": "9780399590504"
+      "status": "AVAILABLE"
     },
     {
-      "id": "5",
       "title": "The Night Circus",
       "description": "A fantasy novel about a magical competition between two young illusionists.",
       "author": "Erin Morgenstern",
-      "publicationDate": "2011-09-13",
+      "Year": "2011-09-13",
       "quantity": 6,
-      "isbn": "9780385534642"
+      "status": "AVAILABLE"
     },
     {
-      "id": "6",
       "title": "Little Fires Everywhere",
       "description": "A drama about two families in a suburban community and the secrets that come to light.",
       "author": "Celeste Ng",
-      "publicationDate": "2017-09-12",
+      "Year": "2017-09-12",
       "quantity": 9,
-      "isbn": "9780735224315"
+      "status": "AVAILABLE"
+    },
+    {
+      "title": "Harry Potter",
+      "description": "A drama about two families in a suburban community and the secrets that come to light.",
+      "author": "Celeste Ng",
+      "Year": "2017-09-12",
+      "quantity": 9,
+      "status": "AVAILABLE"
     }
   ],
   "borrowedBooks": [
@@ -62,13 +64,22 @@
       "id": "1",
       "title": "The Silent Patient",
       "borrowedBy": "enzo10villa@gmail.com",
+      "date_borrowed":"2024-09-01",
       "returnDate": "2024-09-15"
     },
     {
       "id": "2",
       "title": "Where the Crawdads Sing",
       "borrowedBy": "maubert2002@gmail.com",
+      "date_borrowed":"2024-09-06",
       "returnDate": "2024-09-20"
+    },
+    {
+      "id": "7",
+      "title": "Harry Potter",
+      "borrowedBy": "enzo10villa@gmail.com",
+      "date_borrowed":"2024-08-01",
+      "returnDate": "2024-08-15"
     }
   ]
 }

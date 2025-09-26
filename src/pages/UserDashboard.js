@@ -9,29 +9,38 @@ const UserDashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookId, setBookId] = useState('');
-  const [bookStatus, setBookStatus] = useState('');
+  //const [bookStatus, setBookStatus] = useState('');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    setBooks(mockData.books);
-    setFilteredBooks(mockData.books);
-    setBorrowedBooks(mockData.borrowedBooks);
-
     const storedUsername = sessionStorage.getItem('username');
     if (storedUsername) {
       setUsername(storedUsername);
     }
   }, []);
 
+  useEffect(() => {
+  if (books.length > 0) {
+    const IsBorrowed = books.filter(b => b.status === "BORROWED");
+    console.log("Borrowed books =", IsBorrowed);
+    setBorrowedBooks(IsBorrowed);
+    //setBookStatus(books.status);
+    //console.log("bookStatus =",bookStatus);
+  }
+  }, [books]); // se déclenche chaque fois que books change
+
+  
+
+
   // Fetch user borrowings from backend when username is available
   useEffect(() => {
     const fetchBorrowings = async () => {
       if (!username) return;
       try {
-        const res = await axios.get(`/api/lendings/by_user/`, {
-          params: { user_email: username }
-        });
-        setBorrowedBooks(res.data || []);
+        const res = await axios.get(`http://127.0.0.1:5000/get_books`, { headers: { Accept: "application/json" }});
+        console.log("res.data =", res.data);
+        setBooks(res.data || []);
+        setFilteredBooks(res.data || []);
       } catch (err) {
         console.error('Erreur lors du chargement des emprunts:', err?.response?.data || err.message);
       }
@@ -62,24 +71,28 @@ const UserDashboard = () => {
         return;
       }
 
+      let data = getDataBook(bookId)
+      console.log("dataBook =", data)
+
       const lendingData = {
-        user_email: username,
-        book_id: parsedBookId,
-        status:"ACTIVE"
+        "title":data.title,
+        "author":data.author,
+        "description":data.description,
+        "Year":data.year,
+        "quantity":data.quantity,
+        "status": "BORROWED"
       };
+      console.log("lendingData = ",lendingData)
 
       // Utiliser un chemin relatif pour fonctionner derrière un Ingress K8s
       // L'Ingress redirigera /api vers le service backend
-      const response = await axios.post('/api/create-lending/', lendingData);
+      const response = await axios.put(`http://127.0.0.1:5000/put_books/${parsedBookId}`, lendingData);
       if (response.status === 201) {
-        // Refresh borrowings after successful lending
-        try {
-          const res = await axios.get(`/api/lendings/by_user/`, { params: { user_email: username } });
-          setBorrowedBooks(res.data || []);
-        } catch (err) {
-          console.error('Impossible de rafraîchir les emprunts:', err?.response?.data || err.message);
-        }
+        // Ajouter directement l'emprunt à borrowedBooks
+        //setBorrowedBooks(response.data)
         alert('Livre prêté avec succès');
+        const res = await axios.get(`http://127.0.0.1:5000/get_books`, { headers: { Accept: "application/json" }}); //recharge les livres
+        setBooks(res.data);
       } else {
         alert('Échec du prêt');
       }
@@ -95,9 +108,9 @@ const UserDashboard = () => {
     return mockData.books.find(b => b.id === String(id));
   };
 
-  function getBorrowedStatus(Book) {
-    const isBorrowed = borrowedBooks.some(b => b.id === Book.id);
-    return isBorrowed ? "Borrowed" : "Available";
+  function getDataBook(bookId){
+    let dataBook = books.find(b => b.id === Number(bookId));
+    return dataBook;
   }
 
   return (
@@ -116,13 +129,13 @@ const UserDashboard = () => {
         <ul>
           {filteredBooks.map(book => (
             <li key={book.id}>
-              <strong>ISBM:</strong> {book.isbn}<br/>
+              <strong>ID:</strong> {book.id}<br/>
               <strong>Titre:</strong> {book.title}<br/>
               <strong>Auteur:</strong> {book.author}<br/>
               <strong>Description:</strong> {book.description}<br/>
               <strong>Date de publication:</strong> {book.publicationDate}<br/>
               <strong>Quantité:</strong> {book.quantity}<br/>
-              <strong>Status:</strong> {getBorrowedStatus(book)}
+              <strong>Status:</strong> {book.status}
             </li>
           ))}
         </ul>
@@ -157,9 +170,9 @@ const UserDashboard = () => {
             const book = getBookById(lending.id);
             return (
               <li key={lending.id}>
-                Titre: {book?.title || `Livre #${lending.id}`} -
-                Date d'emprunt: {new Date(lending.date_borrowed).toLocaleDateString()} -
-                Date de retour prévue: {new Date(lending.returnDate).toLocaleDateString()}
+                Titre: {lending?.title || `Livre #${lending.id}`} -
+                Date d'emprunt: {lending.year} -
+                Emprunteur: {username}
               </li>
             );
           })}
