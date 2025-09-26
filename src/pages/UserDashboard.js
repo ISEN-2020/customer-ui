@@ -9,7 +9,6 @@ const UserDashboard = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [bookId, setBookId] = useState('');
-  //const [bookStatus, setBookStatus] = useState('');
   const [username, setUsername] = useState('');
 
   useEffect(() => {
@@ -24,8 +23,6 @@ const UserDashboard = () => {
     const IsBorrowed = books.filter(b => b.status === "BORROWED");
     console.log("Borrowed books =", IsBorrowed);
     setBorrowedBooks(IsBorrowed);
-    //setBookStatus(books.status);
-    //console.log("bookStatus =",bookStatus);
   }
   }, [books]); // se déclenche chaque fois que books change
 
@@ -167,7 +164,6 @@ const UserDashboard = () => {
             <li>Aucun emprunt pour l'instant.</li>
           )}
           {borrowedBooks.map(lending => {
-            const book = getBookById(lending.id);
             return (
               <li key={lending.id}>
                 Titre: {lending?.title || `Livre #${lending.id}`} -
